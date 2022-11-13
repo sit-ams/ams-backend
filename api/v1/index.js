@@ -1,6 +1,6 @@
-import express from "express";
+const express = require("express");
 
-import authRoutes from "./Auth/auth.route.js";
+const authRoutes = require("./Auth/auth.route.js");
 
 const router = express.Router();
 
@@ -10,4 +10,4 @@ router.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-export default router;
+module.exports = router;

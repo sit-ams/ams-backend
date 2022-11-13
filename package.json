@@ -4,7 +4,6 @@
   "main": "index.js",
   "repository": "https://github.com/sit-ams/ams-backend",
   "author": "Achyut Shukla",
-  "type": "module",
   "license": "MIT",
   "jest": {
     "testEnvironment": "node",
@@ -31,7 +30,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "devStart": "nodemon index.js | bunyan",
-    "test": "cross-env NODE_ENV=test jest --testTimeout=10000"
+    "dev": "nodemon index.js | bunyan",
+    "test": "cross-env NODE_ENV=development jest --clearMocks --verbose -e --testTimeout=10000"
   }
 }

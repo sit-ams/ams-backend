@@ -1,5 +1,6 @@
-import { createLogger } from "bunyan";
+// import { createLogger } from "bunyan";
+const { createLogger } = require("bunyan");
 
 const logger = createLogger({ name: "AMS - Logger" });
 
-export default logger;
+module.exports = logger;

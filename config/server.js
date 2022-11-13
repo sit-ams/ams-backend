@@ -1,10 +1,10 @@
-import express from "express";
-import dotenv from "dotenv";
-import cors from "cors";
+const express = require("express");
+const dotenv = require("dotenv");
+const cors = require("cors");
 
-import v1 from "../api/v1/index.js";
+const v1 = require("../api/v1/index.js");
 
-import logger from "../utils/logger.js";
+const logger = require("../utils/logger.js");
 
 dotenv.config();
 
@@ -41,4 +41,4 @@ app.use((err, req, res, next) => {
   });
 });
 
-export default app;
+module.exports = app;

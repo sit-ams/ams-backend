@@ -1,6 +1,6 @@
-import express from "express";
+const express = require("express");
 
-import logger from "../../../utils/logger.js";
+const logger = require("../../../utils/logger.js");
 
 const router = express.Router();
 
@@ -9,4 +9,4 @@ router.get("/", (req, res) => {
   res.send({ status: true, message: "Hello World!" });
 });
 
-export default router;
+module.exports = router;
