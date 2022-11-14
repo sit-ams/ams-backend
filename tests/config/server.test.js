@@ -10,4 +10,8 @@ describe("Checks is server runs properly", () => {
   it("should test server port to be defined", () => {
     expect(process.env.PORT).toBeDefined();
   });
+
+  it("should test jwt secret key to be defined", () => {
+    expect(process.env.JWT_SECRET_KEY).toBeDefined();
+  });
 });

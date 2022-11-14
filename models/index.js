@@ -1,7 +1,3 @@
-// const dotenv = require("dotenv");
-// const Sequelize = require("sequelize");
-// const logger = require("../utils/logger.js");
-// const dbCredentials = require("../config/database.config.js");
 const dotenv = require("dotenv");
 const Sequelize = require("sequelize");
 const logger = require("../utils/logger.js");
@@ -33,5 +29,16 @@ const db = {};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
+
+db.User = require("./User.model.js")(Sequelize, sequelize);
+db.UserActivity = require("./User_Activity.model.js")(Sequelize, sequelize);
+
+db.UserActivity.belongsTo(db.User, {
+  foreignKey: "userId",
+});
+
+db.User.hasMany(db.UserActivity, {
+  foreignKey: "userId",
+});
 
 module.exports = db;
