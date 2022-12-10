@@ -27,15 +27,15 @@ app.use("*", (req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  logger.error(err);
+  logger.error(err.message);
   res.status(err.status || 500);
   res.send({
     status: false,
-    enviroment: process.env.MODE || "production",
+    enviroment: process.env.NODE_ENV || "production",
     message:
       err.status === 403
         ? err.message
-        : process.env.MODE === "development"
+        : process.env.NODE_ENV === "development"
         ? err.message
         : "Error Occoured",
   });
