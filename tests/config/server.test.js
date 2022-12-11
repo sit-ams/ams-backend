@@ -12,6 +12,6 @@ describe("Checks is server runs properly", () => {
   });
 
   it("should test jwt secret key to be defined", () => {
-    expect(process.env.JWT_SECRET_KEY).toBeDefined();
+    expect(process.env.JWT_SECRET).toBeDefined();
   });
 });

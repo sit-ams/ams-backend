@@ -2,6 +2,7 @@
   "name": "ams_backend",
   "version": "1.0.0",
   "main": "index.js",
+  "private": false,
   "repository": "https://github.com/sit-ams/ams-backend",
   "author": "Achyut Shukla",
   "license": "MIT",
@@ -25,13 +26,18 @@
   "devDependencies": {
     "bunyan": "^1.8.15",
     "cross-env": "^7.0.3",
+    "husky": "^8.0.2",
     "jest": "^29.3.1",
     "nodemon": "^2.0.19",
+    "pinst": "^3.0.0",
     "supertest": "^6.3.1"
   },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js | bunyan",
-    "test": "cross-env NODE_ENV=development jest --clearMocks --verbose -e --testTimeout=10000"
+    "test": "cross-env NODE_ENV=development jest --coverage --verbose --forceExit --detectOpenHandles --runInBand --testTimeout=10000 --collect-coverage",
+    "postinstall": "husky install",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable"
   }
 }

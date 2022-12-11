@@ -24,7 +24,12 @@ const authMiddleware = (role) => {
           req.headers.authorization && req.headers.authorization.split(" ")[1];
         if (token) {
           // Check if token is valid
-          const tokenData = jwt.verify(token, process.env.JWT_SECRET);
+          let tokenData;
+          try {
+            tokenData = jwt.verify(token, process.env.JWT_SECRET);
+          } catch (err) {
+            return next(createError(401, "Invalid Token"));
+          }
           if (tokenData) {
             // check if token.type is present in role array
             if (role && role.includes(tokenData.type)) {
@@ -43,16 +48,16 @@ const authMiddleware = (role) => {
                 req.token = token;
                 next();
               } else {
-                return next(createError(401, "Invalid Token"));
+                return next(createError(401, "User not found"));
               }
             } else {
-              return next(createError(401, "Unauthorized"));
+              return next(createError(401, "Invalid Role"));
             }
           } else {
             return next(createError(401, "Unauthorized"));
           }
         } else {
-          return next(createError(401, "Unauthorized"));
+          return next(createError(401, "Access denied. No token provided."));
         }
       });
     } catch (err) {
