@@ -30,23 +30,23 @@
     "jest": "^29.3.1",
     "lint-staged": "^13.1.0",
     "nodemon": "^2.0.19",
+    "prettier": "^2.8.1",
     "supertest": "^6.3.1"
   },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js | bunyan",
-    "test": "cross-env NODE_ENV=development jest --coverage --verbose --forceExit --detectOpenHandles --runInBand --testTimeout=10000 --collect-coverage",
-    "postinstall": "husky install",
-    "prepack": "pinst --disable",
-    "postpack": "pinst --enable",
-    "prepare": "husky install"
+    "test": "cross-env NODE_ENV=development jest --coverage --verbose --forceExit --detectOpenHandles --runInBand --testTimeout=10000 --collect-coverage"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged && npm run test"
     }
   },
   "lint-staged": {
-    "*.{js}": "eslint"
+    "*.{js, json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
