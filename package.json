@@ -36,18 +36,13 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js | bunyan",
-    "test": "cross-env NODE_ENV=development jest --coverage --verbose --forceExit --detectOpenHandles --runInBand --testTimeout=10000 --collect-coverage"
+    "test": "cross-env NODE_ENV=development jest --coverage --verbose --forceExit --detectOpenHandles --runInBand --testTimeout=10000 --collect-coverage",
+    "lint": "prettier --check .",
+    "format": "prettier --write ."
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run test && lint-staged",
-      "pre-push": "npm run test"
+      "pre-commit": "yarn format"
     }
-  },
-  "lint-staged": {
-    "*.{js, json,md}": [
-      "prettier --write",
-      "git add"
-    ]
   }
 }
