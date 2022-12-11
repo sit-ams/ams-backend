@@ -38,7 +38,8 @@
     "test": "cross-env NODE_ENV=development jest --coverage --verbose --forceExit --detectOpenHandles --runInBand --testTimeout=10000 --collect-coverage",
     "postinstall": "husky install",
     "prepack": "pinst --disable",
-    "postpack": "pinst --enable"
+    "postpack": "pinst --enable",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
